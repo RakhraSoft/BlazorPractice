@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1700.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RakhraSoftWeb", "RakhraSoftWeb\RakhraSoftWeb.csproj", "{16456D39-264F-4790-AD17-C12D1A4A19A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RakhraSoftClient", "RakhraSoftClient\RakhraSoftClient.csproj", "{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{16456D39-264F-4790-AD17-C12D1A4A19A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16456D39-264F-4790-AD17-C12D1A4A19A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16456D39-264F-4790-AD17-C12D1A4A19A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
