@@ -1,4 +1,4 @@
-﻿namespace RakhraSoftWeb.Data;
+﻿namespace RakhraSoft.Web.Data;
 
 public class WeatherForecastService
 {

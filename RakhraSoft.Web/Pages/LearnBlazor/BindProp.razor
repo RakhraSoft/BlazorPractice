@@ -1,0 +1,15 @@
+﻿@page "/Learn/BindProp"
+<h3>Product</h3>
+Name: @product.Name <br />
+IsActive: @product.IsActive 
+
+@code {
+    RakhraSoft.Models.Product product = new()
+    {
+        Id = 1,
+        Name = "Blazor Course",
+        IsActive = true
+    };
+
+}
+

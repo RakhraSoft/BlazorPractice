@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1700.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RakhraSoftWeb", "RakhraSoftWeb\RakhraSoftWeb.csproj", "{16456D39-264F-4790-AD17-C12D1A4A19A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RakhraSoft.Client", "RakhraSoft.Client\RakhraSoft.Client.csproj", "{7A42B03D-CB34-4D20-982E-75DB18F4312A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RakhraSoftClient", "RakhraSoftClient\RakhraSoftClient.csproj", "{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RakhraSoft.Web", "RakhraSoft.Web\RakhraSoft.Web.csproj", "{D99D447A-9D0A-42D3-93C5-7A6B485ED373}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RakhraSoft.Models", "RakhraSoft.Models\RakhraSoft.Models.csproj", "{2173E0AA-8327-4576-891A-41E3E2AE661E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{16456D39-264F-4790-AD17-C12D1A4A19A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16456D39-264F-4790-AD17-C12D1A4A19A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16456D39-264F-4790-AD17-C12D1A4A19A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16456D39-264F-4790-AD17-C12D1A4A19A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73BEFD65-D1E8-4F38-A88B-2D7F274306EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A42B03D-CB34-4D20-982E-75DB18F4312A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A42B03D-CB34-4D20-982E-75DB18F4312A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A42B03D-CB34-4D20-982E-75DB18F4312A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A42B03D-CB34-4D20-982E-75DB18F4312A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D99D447A-9D0A-42D3-93C5-7A6B485ED373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D99D447A-9D0A-42D3-93C5-7A6B485ED373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D99D447A-9D0A-42D3-93C5-7A6B485ED373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D99D447A-9D0A-42D3-93C5-7A6B485ED373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2173E0AA-8327-4576-891A-41E3E2AE661E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2173E0AA-8327-4576-891A-41E3E2AE661E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2173E0AA-8327-4576-891A-41E3E2AE661E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2173E0AA-8327-4576-891A-41E3E2AE661E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
