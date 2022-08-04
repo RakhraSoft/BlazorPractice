@@ -1,0 +1,8 @@
+﻿<h3>Attribute Splatting</h3>
+<input id="textId" type="text" placeholder="Enter name from child" maxlength="4" @attributes="InputAttributes" />
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> InputAttributes { get; set; } = new();
+}
+

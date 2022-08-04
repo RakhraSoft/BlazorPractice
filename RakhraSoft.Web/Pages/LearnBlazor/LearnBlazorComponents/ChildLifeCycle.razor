@@ -1,0 +1,40 @@
+<h3>ChildLifeCycle</h3>
+<hr />
+@foreach (var item in eventType)
+{
+    @item
+    <hr />
+}
+@code {
+    private List<string> eventType = new List<string>();
+
+    [Parameter]
+    public int Count {get;set;}
+
+    protected override void OnInitialized()
+    {
+        eventType.Add("Child - OnInitialized is called");
+        base.OnInitialized();
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        eventType.Add("Child - OnInitializedAsync is called");
+        return base.OnInitializedAsync();
+    }
+
+
+        protected override void OnParametersSet()
+    {
+        eventType.Add("Child - OnParametersSet is called");
+
+        base.OnParametersSet();
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        eventType.Add("Child - OnParametersSetAsync is called");
+
+        return base.OnParametersSetAsync();
+    }
+}

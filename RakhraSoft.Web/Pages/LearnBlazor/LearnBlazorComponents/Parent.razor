@@ -1,0 +1,33 @@
+﻿@page "/parentComponent"
+<h3>Parent Child Relation Component</h3>
+<CascadingValue Value="@messageForGrandChild" Name="message">
+    <CascadingValue Value="@luckyNumber" Name="luckyNumber">
+        <Child @ref="child" OnButtonClicked="ShowMessage" Title="This title is passed as parameter from parent component">
+            <ChildContent>This is inside the Content</ChildContent>
+            <DangerChildContent>This is high priority</DangerChildContent>
+        </Child>
+        <Child Title="This second child component" />
+    </CascadingValue>
+</CascadingValue>
+
+<p><b>@messageText</b></p>
+
+<AttributeSplatting placeholder="Enter name from Parent" />
+
+<div class="row">
+    <button class="btn btn-success" @onclick="() => child.TestSuccess()">Show Sweet Alert</button>
+</div>
+@code {
+
+    private Child child;
+
+    public string messageForGrandChild = "This message is from your grand parents";
+    public string luckyNumber { get; set; } = "7";
+    public string messageText { get; set; } = string.Empty;
+
+    private void ShowMessage()
+    {
+        messageText = "Child Button clicked";
+    }
+}
+

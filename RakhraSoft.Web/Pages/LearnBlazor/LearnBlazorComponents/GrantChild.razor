@@ -1,0 +1,13 @@
+﻿<h3>Grant Child</h3>
+<p>@MessageForGrandChild</p>
+<p>Lucky Number: @LuckyNumberForChild</p>
+
+@code {
+
+    [CascadingParameter(Name = "message")]
+    public string MessageForGrandChild { get; set; }
+
+    [CascadingParameter(Name ="luckyNumber")]
+    public string LuckyNumberForChild { get; set; }
+}
+

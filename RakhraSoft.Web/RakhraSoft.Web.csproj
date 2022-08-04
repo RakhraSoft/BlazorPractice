@@ -8,12 +8,19 @@
 
   <ItemGroup>
     <None Remove="Pages\LearnBlazor\" />
+    <None Remove="Pages\LearnBlazor\LearnBlazorComponents\" />
+    <None Remove="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\LearnBlazor\" />
+    <Folder Include="Pages\LearnBlazor\LearnBlazorComponents\" />
+    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RakhraSoft.Models\RakhraSoft.Models.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\RakhraSoft.Data\RakhraSoft.Data.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
