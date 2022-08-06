@@ -56,10 +56,10 @@ namespace RakhraSoft.Business.Repository
 
         public CategoryDTO Update(CategoryDTO objDTO)
         {
-            var objFromDb = applicationDbContext.Categories.FirstOrDefault(u => u.Id == id);
+            var objFromDb = applicationDbContext.Categories.FirstOrDefault(u => u.Id == objDTO.Id);
             if (objFromDb is null)
             {
-                return ;
+                return objDTO;
             }
 
             objFromDb.Name = objDTO.Name;

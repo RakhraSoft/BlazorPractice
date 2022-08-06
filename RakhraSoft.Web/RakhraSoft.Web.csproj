@@ -13,11 +13,13 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="AutoMapper" />
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Pages\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\LearnBlazor\" />
     <Folder Include="Pages\LearnBlazor\LearnBlazorComponents\" />
     <Folder Include="Helper\" />
+    <Folder Include="Pages\Category\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RakhraSoft.Models\RakhraSoft.Models.csproj">
