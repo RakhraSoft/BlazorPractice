@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RakhraSoft.Data;
 using RakhraSoft.Data.Data;
 using RakhraSoft.Models.DTOs;
@@ -16,31 +17,31 @@ namespace RakhraSoft.Business.Repository
             this.mapper = mapper;
         }
 
-        public CategoryDTO Create(CategoryDTO objDTO)
+        public async Task<CategoryDTO> CreateAsync(CategoryDTO objDTO)
         {
             var category = mapper.Map<CategoryDTO, Category>(objDTO);
             category.CreatedDate = DateTime.Now;
             var added = applicationDbContext.Categories.Add(category);
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
 
             return mapper.Map<Category, CategoryDTO>(added.Entity);
         }
 
-        public int Delete(int id)
+        public async Task<int> DeleteAsync(int id)
         {
-            var obj = applicationDbContext.Categories.FirstOrDefault(u => u.Id == id);
+            var obj = await applicationDbContext.Categories.FirstOrDefaultAsync(u => u.Id == id);
             if (obj is null)
             {
                 return 0;
             }
 
             applicationDbContext.Categories.Remove(obj);
-            return applicationDbContext.SaveChanges();
+            return await applicationDbContext.SaveChangesAsync();
         }
 
-        public CategoryDTO Get(int id)
+        public async Task<CategoryDTO> GetAsync(int id)
         {
-            var obj = applicationDbContext.Categories.FirstOrDefault(u => u.Id == id);
+            var obj = await applicationDbContext.Categories.FirstOrDefaultAsync(u => u.Id == id);
             if (obj is null)
             {
                 return new CategoryDTO();
@@ -49,14 +50,14 @@ namespace RakhraSoft.Business.Repository
             return mapper.Map<Category, CategoryDTO>(obj);
         }
 
-        public IEnumerable<CategoryDTO> GetAll()
+        public Task<IEnumerable<CategoryDTO>> GetAllAsync()
         {
-            return mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(applicationDbContext.Categories);
+            return Task.FromResult(mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(applicationDbContext.Categories));
         }
 
-        public CategoryDTO Update(CategoryDTO objDTO)
+        public async Task<CategoryDTO> UpdateAsync(CategoryDTO objDTO)
         {
-            var objFromDb = applicationDbContext.Categories.FirstOrDefault(u => u.Id == objDTO.Id);
+            var objFromDb = await applicationDbContext.Categories.FirstOrDefaultAsync(u => u.Id == objDTO.Id);
             if (objFromDb is null)
             {
                 return objDTO;
@@ -64,7 +65,7 @@ namespace RakhraSoft.Business.Repository
 
             objFromDb.Name = objDTO.Name;
             applicationDbContext.Categories.Update(objFromDb);
-            applicationDbContext.SaveChanges();
+            await applicationDbContext.SaveChangesAsync();
             return mapper.Map<Category, CategoryDTO>(objFromDb);
         }
     }
