@@ -16,3 +16,14 @@ window.ShowSweetAlert = (type, message) => {
         icon: type,
     });
 }
+
+
+window.ShowDeleteConfirmationBox = (message) => {
+
+    $('#deleteConfirmationModal').modal('show');
+}
+
+window.HideDeleteConfirmationBox = (message) => {
+
+    $('#deleteConfirmationModal').modal('hide');
+}

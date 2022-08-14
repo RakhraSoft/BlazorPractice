@@ -1,0 +1,115 @@
+﻿@page "/product/create"
+@page "/product/edit/{id:int}"
+@inject IProductRepository ProductRepository
+@inject ICategoryRepository CategoryRepository
+@inject NavigationManager navigationManager
+
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3 ml-3">
+        @Title Product
+    </h3>
+    <div class="col-10">
+        @if (IsLoading)
+        {
+            <div class="d-flex justify-content-center">
+                <div class="loader" />
+            </div>
+        }
+        else
+        {
+    <EditForm Model="Product" OnValidSubmit="UpsertProduct">
+        <DataAnnotationsValidator />
+        <div class="form-group">
+            <label>Name</label>
+            <InputText @bind-Value="Product.Name" class="form-control"></InputText>
+            <ValidationMessage For="() => Product.Name"></ValidationMessage>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <InputTextArea @bind-Value="Product.Description" class="form-control"></InputTextArea>
+            <ValidationMessage For="() => Product.Description"></ValidationMessage>
+        </div>
+        <div class="row pt-3">
+            <div class="btn-group col-6">
+                <InputCheckbox @bind-Value="Product.ShowFavorites" class="form-check-input"></InputCheckbox>
+                <label class="form-check-label">Is Shop Favorite</label>
+            </div>
+            <div class="btn-group col-6">
+                <InputCheckbox @bind-Value="Product.CustomerFavorites" class="form-check-input"></InputCheckbox>
+                <label class="form-check-label">Is Customer Favorite</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Color</label>
+            <InputText @bind-Value="Product.Color" class="form-select"></InputText>
+            <ValidationMessage For="() => Product.Color"></ValidationMessage>
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            <InputSelect @bind-Value="Product.CategoryId" class="form-control">
+                <option value="0" disabled="disabled" selected>---Select Category---</option>
+                @foreach(var category in Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+            </InputSelect>
+            <ValidationMessage For="() => Product.CategoryId"></ValidationMessage>
+        </div>
+        <div class="form-group py-2">
+            <button class="btn btn-primary">@Title</button>
+            <NavLink href="Product" class="btn btn-secondary">Back to Product</NavLink>
+        </div>
+    </EditForm>
+        }
+
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    public ProductDTO Product { get; set; } = new ();
+    public IEnumerable<CategoryDTO> Categories { get; set; } = new List<CategoryDTO>();
+    private string Title { get; set; } = "Create";
+    private bool IsLoading { get; set; } = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        await LoadProductAsync();
+    }
+
+    private async Task LoadProductAsync()
+    {
+        IsLoading = true;
+        Categories = await CategoryRepository.GetAllAsync();
+
+        if(Id != 0)
+        {
+            Product = await ProductRepository.GetAsync(Id);
+            Title = "Update";
+        }
+
+        IsLoading = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void UpsertProduct()
+    {
+        if (Id == 0)
+        {
+            await ProductRepository.CreateAsync(Product);
+        }
+        else
+        {
+            await ProductRepository.UpdateAsync(Product);
+        }
+
+        navigationManager.NavigateTo("Product");
+    }
+}
+

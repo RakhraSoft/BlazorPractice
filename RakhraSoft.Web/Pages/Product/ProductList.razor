@@ -1,19 +1,19 @@
-﻿@page "/category"
-@inject ICategoryRepository categoryRepository
+﻿@page "/product"
+@inject IProductRepository ProductRepository
 @inject IJSRuntime jsRuntime
 
 <DeleteConfirmationBox IsProcessingDelete="@isLoading" OnResponse="() => ConfirmDelete(true)"/>
 <div class="row mt-4">
     <div class="col-6">
-        <h4 class="card-title text-primary">Category List</h4>
+        <h4 class="card-title text-primary">Product List</h4>
     </div>
     <div class="col-3 offset-1">
-        <a href="category/create" class="btn btn-info form-control">
-            Add New Category
+        <a href="Product/create" class="btn btn-info form-control">
+            Add New Product
         </a>
     </div>
     <div class="col-12 p-3">
-        @if (CategoryDTOs.Any())
+        @if (ProductDTOs.Any())
         {
             <table class="table table-bordered">
                 <thead>
@@ -22,20 +22,38 @@
                             Name
                         </th>
                         <th>
+                            Shop Favorites
+                        </th>
+                        <th>
+                            Customer Favorites
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                        <th>
                             Actions
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var category in CategoryDTOs)
+                    @foreach (var product in ProductDTOs)
                     {
                         <tr>
                             <td>
-                                @category.Name
+                                @product.Name
                             </td>
                             <td>
-                                <NavLink href="@($"/category/edit/{category.Id}")" class="btn btn-primary">Edit</NavLink>
-                                <button class="btn btn-danger" @onclick="() => HandleDelete(category.Id)">Delete</button>
+                                <input type="checkbox" disabled checked="@product.CustomerFavorites" />
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled checked="@product.ShowFavorites" />
+                            </td>
+                            <td>
+                                @product.Category?.Name
+                            </td>
+                            <td>
+                                <NavLink href="@($"/product/edit/{product.Id}")" class="btn btn-primary">Edit</NavLink>
+                                <button class="btn btn-danger" @onclick="() => HandleDelete(product.Id)">Delete</button>
                             </td>
                         </tr>
                     }
@@ -63,8 +81,8 @@
 @code {
 
     public bool isLoading { get; set; } = true;
-    public IEnumerable<CategoryDTO> CategoryDTOs { get; set; } = new List<CategoryDTO>();
-    private int DeleteCategoryId { get; set; }
+    public IEnumerable<ProductDTO> ProductDTOs { get; set; } = new List<ProductDTO>();
+    private int DeleteProductId { get; set; }
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
@@ -74,21 +92,21 @@
     {
         if(firstRender)
         {
-            await LoadCategoriesAsync();
+            await LoadProductsAsync();
         }
 
     }
 
-    private async Task LoadCategoriesAsync()
+    private async Task LoadProductsAsync()
     {
-        CategoryDTOs = await categoryRepository.GetAllAsync();
+        ProductDTOs = await ProductRepository.GetAllAsync();
         isLoading = false;
         await InvokeAsync(StateHasChanged);
     }
 
     private async void HandleDelete(int Id)
     {
-        DeleteCategoryId = Id;
+        DeleteProductId = Id;
         await jsRuntime.InvokeVoidAsync("ShowDeleteConfirmationBox");
     }
 
@@ -100,8 +118,8 @@
             return;
         }
 
-        await categoryRepository.DeleteAsync(DeleteCategoryId);
-        await LoadCategoriesAsync();
+        await ProductRepository.DeleteAsync(DeleteProductId);
+        await LoadProductsAsync();
         await jsRuntime.InvokeVoidAsync("HideDeleteConfirmationBox");
         isLoading = false;
         await InvokeAsync(StateHasChanged);
